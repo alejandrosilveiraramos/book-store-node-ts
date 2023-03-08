@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Book } from './bookModel';
+
 
 
 @Entity('author')
@@ -14,5 +16,8 @@ export class Author {
 
     @Column({type: 'date', nullable: false})
     birthDate: Date;
+
+    @OneToMany(() => Book, (book) => book.author)
+    book: Book[]
 
 }
